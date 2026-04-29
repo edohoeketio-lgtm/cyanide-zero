@@ -1,0 +1,21 @@
+{
+  "name": "cyanide-zero",
+  "version": "1.0.0",
+  "description": "Toxic Waste to Urban Resource. An interactive platform mapping the industrial shift of cassava peel waste in Nigeria.",
+  "scripts": {
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --minify",
+    "build": "npm run build:css",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edohoeketio-lgtm/cyanide-zero.git"
+  },
+  "keywords": [],
+  "author": "Maurice Edohoeket",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.4",
+    "tailwindcss": "^4.2.4"
+  }
+}
