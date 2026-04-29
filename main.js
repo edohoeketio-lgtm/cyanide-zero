@@ -20,55 +20,78 @@ document.addEventListener("DOMContentLoaded", () => {
     duration: 1,
   }, "-=0.5");
 
-  // Hero Parallax on Scroll
-  gsap.to(".hero-title", {
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-    y: 200,
-    opacity: 0,
+  // Remove Parallax Fading. Implement Scroll-Scrubbed Scramble Effect.
+  const scrambleElements = document.querySelectorAll(".scramble-text");
+  const originalTexts = Array.from(scrambleElements).map(el => el.innerText);
+  const chars = "!<>-_\\/[]{}—=+*^?#_";
+  let lastProgress = -1;
+
+  ScrollTrigger.create({
+    trigger: "#hero",
+    start: "top top",
+    end: "bottom top",
+    scrub: true,
+    onUpdate: (self) => {
+      const p = self.progress;
+      
+      // Update only every 5% progress to slow down the scramble flicker
+      const steppedProgress = Math.floor(p * 20) / 20; 
+      
+      if (steppedProgress === lastProgress && p !== 0 && p !== 1) return;
+      lastProgress = steppedProgress;
+      
+      const scramble = (text) => {
+        // Ensure it's perfectly readable at exactly 0 progress
+        if (p === 0) return text;
+        
+        let res = "";
+        for (let i = 0; i < text.length; i++) {
+          if (text[i] === " " || text[i] === "\n") {
+            res += text[i];
+          } else {
+            // Scale the randomness intensity with the scroll progress
+            if (Math.random() < p) {
+              res += chars[Math.floor(Math.random() * chars.length)];
+            } else {
+              res += text[i];
+            }
+          }
+        }
+        return res;
+      };
+
+      scrambleElements.forEach((el, index) => {
+        el.innerText = scramble(originalTexts[index]);
+      });
+    }
   });
 
-  gsap.to(".hero-statement", {
-    scrollTrigger: {
-      trigger: "#hero",
-      start: "top top",
-      end: "bottom top",
-      scrub: true,
-    },
-    y: 100,
-    opacity: 0,
-  });
-
-  // 2. The Toxic Toll (Sticky Section Crossfades)
+  // 2. The Toxic Toll (Sticky Section Card Stack)
   const problemItems = gsap.utils.toArray(".problem-item");
-  const totalItems = problemItems.length;
   
-  // Create a timeline mapped to the scroll progress of the #problem section
-  const problemTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#problem",
-      start: "top top",
-      end: "bottom bottom",
-      scrub: 1, // Smooth scrubbing
-    }
-  });
+  if (problemItems.length > 0) {
+    // Initialize items 2 and 3 off-screen bottom
+    gsap.set(problemItems.slice(1), { yPercent: 100 });
 
-  // We have 3 items. Item 1 is already visible (opacity 1).
-  // We fade out Item 1, fade in Item 2, fade out Item 2, fade in Item 3.
-  problemItems.forEach((item, i) => {
-    if (i !== 0) {
-      // Fade in current item
-      problemTl.to(item, { opacity: 1, duration: 1 }, `+=${i * 0.5}`);
-    }
-    if (i !== totalItems - 1) {
-      // Fade out current item
-      problemTl.to(item, { opacity: 0, duration: 1 }, `+=${(i + 1) * 0.5}`);
-    }
-  });
+    const problemTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#problem",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1,
+      }
+    });
+
+    // Slide up Card 2 over Card 1
+    problemTl.to(problemItems[1], { yPercent: 0, duration: 1, ease: "none" })
+             // Dim Card 1 slightly to emphasize stacking
+             .to(problemItems[0], { scale: 0.95, opacity: 0.3, duration: 1, ease: "none" }, "<")
+             
+             // Slide up Card 3 over Card 2
+             .to(problemItems[2], { yPercent: 0, duration: 1, ease: "none" })
+             // Dim Card 2 slightly to emphasize stacking
+             .to(problemItems[1], { scale: 0.95, opacity: 0.3, duration: 1, ease: "none" }, "<");
+  }
 
 
   // 3. The Blueprint (Horizontal Scroll)

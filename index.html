@@ -43,59 +43,96 @@
   </a>
 
   <!-- SECTION 01: Hero Reveal -->
-  <section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden" id="hero">
-    <!-- Background Video / Image (Noise Overlay) -->
+  <section class="relative w-full h-screen flex flex-col justify-end overflow-hidden" id="hero">
+    <!-- Background Video -->
     <div class="absolute inset-0 z-0 bg-[#0A0A0A]">
-      <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+      <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-80">
+        <source src="./16056466-uhd_3840_2160_25fps.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+      <!-- SVG Noise Overlay -->
+      <div class="absolute inset-0 opacity-20 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E'); pointer-events: none;"></div>
     </div>
     
-    <div class="relative z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
-      <h1 class="hero-title text-[8vw] md:text-[6vw] font-space font-bold leading-none tracking-tighter text-[#F4F4F0] uppercase">
-        CYAN_0
-      </h1>
-      <p class="hero-statement mt-8 text-lg md:text-2xl font-inter font-medium text-[#F4F4F0] max-w-2xl opacity-0 translate-y-8">
-        Nigeria produces over <span class="text-[#D9480F]">14,000,000</span> tons of cassava peel waste each year. Left to rot, it releases methane and leaches cyanide into our groundwater. CYAN_0 maps the industrial shift.
-      </p>
+    <!-- Hero Content Bottom Split -->
+    <div class="relative z-10 w-full px-6 md:px-12 pb-12 flex flex-col md:flex-row items-end justify-between gap-8 mt-auto">
       
-      <div class="mt-16 scroll-indicator opacity-0 flex flex-col items-center gap-2">
-        <span class="font-mono text-xs text-[#888] uppercase tracking-widest">Scroll to shift</span>
-        <div class="w-px h-16 bg-gradient-to-b from-[#D9480F] to-transparent"></div>
+      <!-- Bottom Left: Big Title -->
+      <div class="w-full md:w-auto flex flex-col">
+        <h1 class="hero-title text-[10vw] md:text-[7vw] font-space font-bold leading-[0.8] tracking-tighter text-[#D9480F] uppercase scramble-text">
+          CYANIDE ZERO
+        </h1>
       </div>
+      
+      <!-- Bottom Right: Copy -->
+      <div class="hero-statement w-full md:w-[400px] flex flex-col opacity-0 translate-y-8 mb-4 md:mb-8">
+        <p class="text-xl md:text-2xl font-space font-bold text-[#F4F4F0] uppercase tracking-wide mb-4">
+          <span class="scramble-text">Toxic Waste</span> <span class="text-[#D9480F]">→</span> <span class="scramble-text">Urban Resource</span>
+        </p>
+        <p class="text-xs md:text-sm font-mono text-[#aaa] uppercase tracking-[0.1em] leading-relaxed scramble-text">
+          14,000,000 tons of lethal cassava peel waste neutralized. A structural intervention mapping the industrial shift in Nigeria.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Little texts at the bottom -->
+    <div class="scroll-indicator relative z-10 w-full px-6 md:px-12 pb-6 flex justify-between items-center border-t border-[#333]/50 pt-6 opacity-0">
+      <span class="font-mono text-[10px] md:text-xs text-[#888] uppercase tracking-widest">Designer: Maurice Edohoeket</span>
+      <div class="flex items-center gap-4 hidden md:flex">
+        <div class="w-12 h-[1px] bg-[#D9480F]"></div>
+        <span class="font-mono text-[10px] md:text-xs text-[#F4F4F0] uppercase tracking-widest">Scroll To Explore</span>
+        <div class="w-12 h-[1px] bg-[#D9480F]"></div>
+      </div>
+      <span class="font-mono text-[10px] md:text-xs text-[#888] uppercase tracking-widest">April 29, 2026</span>
     </div>
   </section>
 
   <!-- SECTION 02: The Toxic Toll (Sticky Scroll) -->
   <section class="relative w-full min-h-[300vh] bg-[#0A0A0A]" id="problem">
-    <div class="sticky top-0 h-screen flex flex-col md:flex-row">
+    <div class="sticky top-0 h-screen flex flex-col md:flex-row border-t border-[#333]">
       <!-- Left: Pinned Title -->
-      <div class="w-full md:w-1/2 h-1/2 md:h-full flex items-center justify-center p-8 md:p-16 border-b md:border-b-0 md:border-r border-[#333]">
-        <h2 class="text-4xl md:text-7xl font-space font-bold text-[#F4F4F0] uppercase leading-none tracking-tighter">
-          The Toxic<br><span class="text-[#D9480F]">Toll</span>
+      <div class="w-full md:w-1/2 h-1/3 md:h-full flex items-center justify-center p-8 md:p-16 border-b md:border-b-0 md:border-r border-[#333] relative overflow-hidden bg-[#050505]">
+        <div class="absolute inset-0 opacity-10 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E'); pointer-events: none;"></div>
+        <h2 class="text-[12vw] md:text-[8vw] font-space font-bold uppercase leading-[0.8] tracking-tighter flex flex-col relative z-10">
+          <span class="text-[#F4F4F0]">The Toxic</span>
+          <span class="text-transparent" style="-webkit-text-stroke: 2px #D9480F;">Toll</span>
         </h2>
       </div>
       
       <!-- Right: Scrolling Content Container -->
-      <div class="w-full md:w-1/2 h-1/2 md:h-full relative overflow-hidden bg-[#111]">
-        <!-- Item 1 -->
-        <div class="problem-item absolute inset-0 p-8 md:p-16 flex flex-col justify-center opacity-100 z-30">
-          <span class="font-mono text-[#D9480F] text-sm md:text-base mb-4">01 / CYANIDE RUNOFF</span>
-          <h3 class="text-2xl md:text-4xl font-space font-bold mb-6">Sterilizing The Soil</h3>
-          <p class="text-lg text-[#aaa] font-inter">Decomposing peels release hydrocyanic acid, sterilizing the soil and poisoning local water tables around Garri processing hubs.</p>
+      <div class="w-full md:w-1/2 h-2/3 md:h-full relative overflow-hidden bg-[#0A0A0A] problem-container">
+        
+        <!-- Item 1: White -->
+        <div class="problem-item absolute inset-0 bg-[#F4F4F0] p-8 md:p-16 flex flex-col justify-center z-10">
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[40vw] md:text-[25vw] font-space font-bold text-[#E5E5DF] leading-none z-0 select-none">01</div>
+          <div class="relative z-10">
+            <span class="font-mono text-[#D9480F] text-xs md:text-sm uppercase tracking-widest mb-4 block">01 / Cyanide Leaching</span>
+            <h3 class="text-3xl md:text-5xl font-space font-bold mb-6 text-[#111] uppercase tracking-tighter">Sterilizing The Soil</h3>
+            <p class="text-lg md:text-xl text-[#555] font-mono leading-relaxed">Decomposing peels release hydrocyanic acid, effectively sterilizing the soil and toxifying local water tables.</p>
+          </div>
         </div>
         
-        <!-- Item 2 -->
-        <div class="problem-item absolute inset-0 p-8 md:p-16 flex flex-col justify-center opacity-0 z-20">
-          <span class="font-mono text-[#D9480F] text-sm md:text-base mb-4">02 / METHANE THREAT</span>
-          <h3 class="text-2xl md:text-4xl font-space font-bold mb-6">Greenhouse Emissions</h3>
-          <p class="text-lg text-[#aaa] font-inter">Mountains of wet peels ferment in the open air, releasing methane—a greenhouse gas 28x more potent than CO2.</p>
+        <!-- Item 2: Forest Green (Image Match) -->
+        <div class="problem-item absolute inset-0 bg-[#253623] p-8 md:p-16 flex flex-col justify-center border-t border-[#111] z-20 shadow-[0_-30px_60px_rgba(0,0,0,0.5)]">
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[40vw] md:text-[25vw] font-space font-bold text-[#111C11] opacity-40 leading-none z-0 select-none">02</div>
+          <div class="relative z-10">
+            <span class="font-mono text-[#F4F4F0] text-xs md:text-sm uppercase tracking-widest mb-4 block">02 / Methane Emissions</span>
+            <h3 class="text-3xl md:text-5xl font-space font-bold mb-6 text-[#578A55] uppercase tracking-tighter">Greenhouse Agent</h3>
+            <p class="text-lg md:text-xl text-[#578A55] font-mono leading-relaxed">Fermenting in the open air, wet peels off-gas methane—an invisible greenhouse agent 28x more potent than carbon dioxide.</p>
+          </div>
         </div>
         
-        <!-- Item 3 -->
-        <div class="problem-item absolute inset-0 p-8 md:p-16 flex flex-col justify-center opacity-0 z-10">
-          <span class="font-mono text-[#D9480F] text-sm md:text-base mb-4">03 / HIDDEN POTENTIAL</span>
-          <h3 class="text-2xl md:text-4xl font-space font-bold mb-6">High-Energy Biomass</h3>
-          <p class="text-lg text-[#aaa] font-inter">Cassava peels are not garbage. They are carbohydrate-rich biomass waiting to be processed into industrial resources.</p>
+        <!-- Item 3: Burnt Orange -->
+        <div class="problem-item absolute inset-0 bg-[#D9480F] p-8 md:p-16 flex flex-col justify-center border-t border-[#111] z-30 shadow-[0_-30px_60px_rgba(0,0,0,0.5)]">
+          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[40vw] md:text-[25vw] font-space font-bold text-[#B83C0C] leading-none z-0 select-none">03</div>
+          <div class="relative z-10">
+            <span class="font-mono text-[#111] text-xs md:text-sm uppercase tracking-widest mb-4 block">03 / Untapped Biomass</span>
+            <h3 class="text-3xl md:text-5xl font-space font-bold mb-6 text-[#111] uppercase tracking-tighter">Raw Material</h3>
+            <p class="text-lg md:text-xl text-[#222] font-mono leading-relaxed">This is not refuse. It is a carbohydrate-dense raw material awaiting industrial extraction.</p>
+          </div>
         </div>
+        
       </div>
     </div>
   </section>
