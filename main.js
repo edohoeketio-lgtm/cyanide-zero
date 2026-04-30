@@ -246,10 +246,16 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.scrollY > window.innerHeight * 0.8) {
         backToTop.style.opacity = "1";
         backToTop.style.pointerEvents = "auto";
+        backToTop.style.cursor = "pointer";
       } else {
         backToTop.style.opacity = "0";
         backToTop.style.pointerEvents = "none";
       }
+    });
+
+    backToTop.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 });
