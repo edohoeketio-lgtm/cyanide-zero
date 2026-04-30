@@ -255,7 +255,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     backToTop.addEventListener("click", (e) => {
       e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      
+      // Custom smooth scroll to avoid native scrollTo bugs after overflow changes
+      const start = window.scrollY;
+      const startTime = performance.now();
+      const duration = 800;
+
+      function scrollStep(timestamp) {
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+        window.scrollTo(0, start * (1 - ease));
+        if (progress < 1) {
+          requestAnimationFrame(scrollStep);
+        }
+      }
+      requestAnimationFrame(scrollStep);
     });
   }
 });
